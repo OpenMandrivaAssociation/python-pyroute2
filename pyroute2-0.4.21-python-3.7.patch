@@ -189,3 +189,14 @@
  
  
  class RawIPRSocket(RawIPRSocketMixin, NetlinkSocket):
+--- pyroute2-0.4.21/pyroute2/ipdb/main.py.omv~	2018-03-06 15:55:53.740991225 +0100
++++ pyroute2-0.4.21/pyroute2/ipdb/main.py	2018-03-06 15:56:08.796176386 +0100
+@@ -858,7 +858,7 @@ class IPDB(object):
+         # setup monitoring socket
+         self.mnl = self.nl.clone()
+         try:
+-            self.mnl.bind(groups=self.nl_bind_groups, async=self._nl_async)
++            self.mnl.bind(groups=self.nl_bind_groups, asynk=self._nl_async)
+         except:
+             self.mnl.close()
+             if self._nl_own is None:
