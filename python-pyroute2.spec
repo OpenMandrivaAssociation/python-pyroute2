@@ -8,6 +8,7 @@ Group:		Development/Python
 License:	Python
 Url:		https://pypi.python.org/pypi/pyroute2
 Source0:	https://github.com/svinota/pyroute2/archive/%{version}.tar.gz
+Patch0:		pyroute2-0.4.21-python-3.7.patch
 BuildArch:	noarch 
 BuildRequires:	python-setuptools
 BuildRequires:	pkgconfig(python3)
@@ -20,6 +21,7 @@ protocols.
 
 %prep
 %setup -qn %{module}-%{version}
+%apply_patches
 
 %build
 %__python setup.py build
