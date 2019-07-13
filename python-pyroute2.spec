@@ -2,13 +2,12 @@
   
 Summary:	Python netlink library — Linux network setup and monitoring
 Name:		python-pyroute2
-Version:	0.4.21
-Release:	2
+Version:	0.5.6
+Release:	1
 Group:		Development/Python
 License:	Python
 Url:		https://pypi.python.org/pypi/pyroute2
 Source0:	https://github.com/svinota/pyroute2/archive/%{version}.tar.gz
-Patch0:		pyroute2-0.4.21-python-3.7.patch
 BuildArch:	noarch 
 BuildRequires:	python-setuptools
 BuildRequires:	pkgconfig(python3)
@@ -30,5 +29,7 @@ protocols.
 %__python setup.py install --root=%{buildroot}
 
 %files
+%{_bindir}/pyroute2-cli
+%{_bindir}/ss2
 %{py_sitedir}/pyroute2*.egg-info
 %{py_sitedir}/pyroute2
