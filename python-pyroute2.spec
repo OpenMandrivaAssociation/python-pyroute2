@@ -20,7 +20,7 @@ protocols.
 
 %prep
 %setup -qn %{module}-%{version}
-%apply_patches
+%autopatch -p1
 
 %build
 %__python setup.py build
