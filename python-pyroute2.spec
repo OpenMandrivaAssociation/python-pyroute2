@@ -2,8 +2,8 @@
   
 Summary:	Python netlink library — Linux network setup and monitoring
 Name:		python-pyroute2
-Version:	0.5.7
-Release:	2
+Version:	0.5.9
+Release:	1
 Group:		Development/Python
 License:	Python
 Url:		https://pypi.python.org/pypi/pyroute2
