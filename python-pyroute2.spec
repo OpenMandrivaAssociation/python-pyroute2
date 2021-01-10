@@ -14,7 +14,7 @@ Patch0:         fix-provides.patch
 BuildRequires:  python3-devel
 BuildRequires:  (python3dist(psutil) >= 5 with python3dist(psutil) < 6)
 BuildRequires:  python3dist(setuptools)
-BuildRequires:  python3dist(win-inet-pton)
+#BuildRequires:  python3dist(win-inet-pton)
 
 %description
 Pyroute2 is a pure Python **netlink** library. The core requires only Python
@@ -38,8 +38,8 @@ rm -rf %{pypi_name}.egg-info
 %install
 %py3_install
 
-#%check
-#%{__python3} setup.py test
+#%%check
+#%%{__python3} setup.py test
 
 %files -n python-%{pypi_name}
 %license README.license.md LICENSE.Apache.v2 LICENSE.GPL.v2 
