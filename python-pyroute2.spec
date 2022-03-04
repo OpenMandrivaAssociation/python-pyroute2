@@ -9,9 +9,8 @@ Summary:        Python Netlink library
 Group:          Development/Python
 License:        dual license GPLv2+ and Apache v2
 URL:            https://github.com/svinota/pyroute2
-Source0:        https://github.com/svinota/pyroute2/archive/refs/tags/%{version}.tar.gz
-Patch0:         fix-provides.patch
-BuildRequires:  python3-devel
+Source0:        https://files.pythonhosted.org/packages/source/p/pyroute2/pyroute2-%{version}.tar.gz
+BuildRequires:  python-devel >= 3.0
 BuildRequires:  (python3dist(psutil) >= 5 with python3dist(psutil) < 6)
 BuildRequires:  python3dist(setuptools)
 #BuildRequires:  python3dist(win-inet-pton)
@@ -25,11 +24,7 @@ settings addresses, routes, traffic controls * **nfnetlink** netfilter API *
 **ipq**...
 
 %prep
-%setup -n %{pypi_name}-%{version}
-#mv README.rst README.md
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-%autopatch
+%autosetup -p1 -n %{pypi_name}-%{version}
 
 
 %build
@@ -43,8 +38,5 @@ rm -rf %{pypi_name}.egg-info
 
 %files -n python-%{pypi_name}
 %license README.license.md LICENSE.Apache.v2 LICENSE.GPL.v2 
-%doc README.make.md README.md README.report.md README.rst
-%{_bindir}/pyroute2-cli
-%{_bindir}/ss2
 %{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/pyroute2-0.5.14-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}*.egg-info
