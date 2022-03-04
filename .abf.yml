@@ -1,2 +1,9 @@
 sources:
   pyroute2-0.6.7.tar.gz: 8f396f95be751497f5f5328b121fd7170049f9d6
+  pyroute2.core-0.6.7.tar.gz: 6f67bd14af995401e386bc1b9af0935a6b183c20
+  pyroute2.ethtool-0.6.7.tar.gz: fa164d049caff1fc62591ecdfbc3e4bc76e5fffa
+  pyroute2.ipdb-0.6.7.tar.gz: 388f1ba46b7ab77f62fa9d6a533f10a7f4242bbf
+  pyroute2.ipset-0.6.7.tar.gz: cecbbfd36a68b5c74fba6e959b89bd07bbd2f889
+  pyroute2.ndb-0.6.7.tar.gz: b2b9d01eb694a9eb80adc2b83fa6fdefff4d2679
+  pyroute2.nftables-0.6.7.tar.gz: 9ef42160968d421c7021339330e66d55cb317ff8
+  pyroute2.nslink-0.6.7.tar.gz: f5436d39065be1a7aa9498baf8cdee75f2d5cb87
