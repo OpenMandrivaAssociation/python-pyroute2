@@ -3,13 +3,13 @@
 %define debug_package %{nil}
 
 Name:           python-%{pypi_name}
-Version:        0.5.14
-Release:        2
+Version:        0.6.7
+Release:        1
 Summary:        Python Netlink library
 Group:          Development/Python
 License:        dual license GPLv2+ and Apache v2
 URL:            https://github.com/svinota/pyroute2
-Source0:        %{version}.tar.gz
+Source0:        https://github.com/svinota/pyroute2/archive/refs/tags/%{version}.tar.gz
 Patch0:         fix-provides.patch
 BuildRequires:  python3-devel
 BuildRequires:  (python3dist(psutil) >= 5 with python3dist(psutil) < 6)
@@ -43,7 +43,7 @@ rm -rf %{pypi_name}.egg-info
 
 %files -n python-%{pypi_name}
 %license README.license.md LICENSE.Apache.v2 LICENSE.GPL.v2 
-%doc README.make.md README.md README.report.md README.rst examples/README.md
+%doc README.make.md README.md README.report.md README.rst
 %{_bindir}/pyroute2-cli
 %{_bindir}/ss2
 %{python3_sitelib}/%{pypi_name}
