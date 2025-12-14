@@ -3,24 +3,37 @@
 %define debug_package %{nil}
 
 Name:		python-%{pypi_name}
-Version:	0.6.7
-Release:	4
+Version:	0.9.5
+Release:	1
 Summary:	Python Netlink library
 Group:		Development/Python
-License:	dual license GPLv2+ and Apache v2
+License:	Apache-2.0 OR GPL-2.0-or-later
 URL:		https://github.com/svinota/pyroute2
 Source0:	https://files.pythonhosted.org/packages/source/p/pyroute2/pyroute2-%{version}.tar.gz
-Source1:	https://files.pythonhosted.org/packages/source/p/pyroute2.core/pyroute2.core-%{version}.tar.gz
-Source2:	https://files.pythonhosted.org/packages/source/p/pyroute2.nslink/pyroute2.nslink-%{version}.tar.gz
-Source3:	https://files.pythonhosted.org/packages/source/p/pyroute2.nftables/pyroute2.nftables-%{version}.tar.gz
-Source4:	https://files.pythonhosted.org/packages/source/p/pyroute2.ethtool/pyroute2.ethtool-%{version}.tar.gz
-Source5:	https://files.pythonhosted.org/packages/source/p/pyroute2.ipset/pyroute2.ipset-%{version}.tar.gz
-Source6:	https://files.pythonhosted.org/packages/source/p/pyroute2.ipdb/pyroute2.ipdb-%{version}.tar.gz
-Source7:	https://files.pythonhosted.org/packages/source/p/pyroute2.ndb/pyroute2.ndb-%{version}.tar.gz
+
 BuildRequires:	pkgconfig(python)
-BuildRequires:	(python3dist(psutil) >= 5 with python3dist(psutil) < 6)
-BuildRequires:	python3dist(setuptools)
-#BuildRequires:  python3dist(win-inet-pton)
+BuildRequires:	python%{pyver}dist(pip)
+BuildRequires:	python%{pyver}dist(psutil)
+BuildRequires:	python%{pyver}dist(setuptools)
+BuildRequires:	python%{pyver}dist(wheel)
+
+# from v0.7.0 pyroute2 moved to a single source tarball
+# obsolete the old modules
+Provides:       python-pyroute2.core = %{version}
+Obsoletes:      python-pyroute2.core < %{version}
+Provides:       python-pyroute2.ethtool = %{version}
+Obsoletes:      python-pyroute2.ethtool < %{version}
+Provides:       python-pyroute2.ipdb = %{version}
+Obsoletes:      python-pyroute2.ipdb < %{version}
+Provides:       python-pyroute2.ipset = %{version}
+Obsoletes:      python-pyroute2.ipset < %{version}
+Provides:       python-pyroute2.ndb = %{version}
+Obsoletes:      python-pyroute2.ndb < %{version}
+Provides:       python-pyroute2.nftables = %{version}
+Obsoletes:      python-pyroute2.nftables < %{version}
+Provides:       python-pyroute2.nslink = %{version}
+Obsoletes:      python-pyroute2.nslink < %{version}
+
 
 %description
 Pyroute2 is a pure Python **netlink** library. The core requires only Python
@@ -32,36 +45,22 @@ settings addresses, routes, traffic controls * **nfnetlink** netfilter API *
 
 %prep
 %autosetup -p1 -n %{pypi_name}-%{version}
-tar xf %{S:1}
-tar xf %{S:2}
-tar xf %{S:3}
-tar xf %{S:4}
-tar xf %{S:5}
-tar xf %{S:6}
-tar xf %{S:7}
+# Remove bundled egg-info
+rm -rf %{pypi_name}.egg-info
 
 %build
-for i in . pyroute2.core-%{version} pyroute2.nslink-%{version} pyroute2.nftables-%{version} pyroute2.ethtool-%{version} pyroute2.ipset-%{version} pyroute2.ipdb-%{version} pyroute2.ndb-%{version}; do
-    cd $i
-	%py_build
-    cd -
-done
+%py_build
 
 %install
-for i in . pyroute2.core-%{version} pyroute2.nslink-%{version} pyroute2.nftables-%{version} pyroute2.ethtool-%{version} pyroute2.ipset-%{version} pyroute2.ipdb-%{version} pyroute2.ndb-%{version}; do
-    cd $i
-	%py_install
-    cd -
-done
-
-#%%check
-#%%{__python3} setup.py test
+%py_install
 
 %files -n python-%{pypi_name}
-%license README.license.md LICENSE.Apache.v2 LICENSE.GPL.v2 
+%doc README.rst
+%license README.license.rst LICENSE.Apache-2.0 LICENSE.GPL-2.0-or-later
+%{_bindir}/dhcp-server-detector
+%{_bindir}/pyroute2-decoder
+%{_bindir}/pyroute2-dhcp-client
+%{_bindir}/pyroute2-test-platform
 %{_bindir}/ss2
-%{_bindir}/pyroute2-cli
-%{python3_sitelib}/%{pypi_name}
-%{python3_sitelib}/%{pypi_name}*.egg-info
-%{python3_sitelib}/pr2modules
-%{python3_sitelib}/*.pth
+%{python_sitelib}/%{pypi_name}
+%{python_sitelib}/%{pypi_name}-%{version}.dist-info
