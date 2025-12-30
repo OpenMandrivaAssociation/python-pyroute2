@@ -4,7 +4,7 @@
 
 Name:		python-%{pypi_name}
 Version:	0.9.5
-Release:	1
+Release:	2
 Summary:	Python Netlink library
 Group:		Development/Python
 License:	Apache-2.0 OR GPL-2.0-or-later
