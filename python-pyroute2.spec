@@ -3,8 +3,8 @@
 %define debug_package %{nil}
 
 Name:		python-%{pypi_name}
-Version:	0.9.5
-Release:	2
+Version:	0.9.6
+Release:	1
 Summary:	Python Netlink library
 Group:		Development/Python
 License:	Apache-2.0 OR GPL-2.0-or-later
@@ -44,7 +44,7 @@ settings addresses, routes, traffic controls * **nfnetlink** netfilter API *
 **ipq**...
 
 %prep
-%autosetup -p1 -n %{pypi_name}-%{version}
+%autosetup -p1 -n pyroute2-0.9.6
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
